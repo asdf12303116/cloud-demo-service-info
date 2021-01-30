@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: service-info-cluster
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server-00.local:30000/eureka/,http://eureka-server-01.local:30001/eureka/
+  instance:
+    instance-id: ${spring.config.activate.on-profile}
+    prefer-ip-address: true
+---
+server:
+  port: 35000
+spring:
+  config:
+    activate:
+      on-profile: service-info-00
+---
+server:
+  port: 35001
+spring:
+  config:
+    activate:
+      on-profile: service-info-01
